@@ -389,6 +389,8 @@ class Base {
         var result = acc+sep;
         if (arg) {
           result += arg.toString();
+        } else {
+          result += 'Undefined';
         }
         return result;
       }
