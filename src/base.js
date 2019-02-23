@@ -216,7 +216,7 @@ class Base {
     this.bridge = bridge || this.setupBridge(config);
     info('initialized');
 
-    this.puppet.setApp(this)
+    this.puppet.setApp(this);
   }
 
   /**
@@ -355,9 +355,9 @@ class Base {
     return this.getStatusRoomId().then(statusRoomId => {
       return Promise.each(users, (user) => {
         return this.getIntentFromThirdPartySenderId(user.userId, user.name, user.avatarUrl)
-        .then((ghostIntent) => {
-          return ghostIntent.join(statusRoomId);
-        });
+          .then((ghostIntent) => {
+            return ghostIntent.join(statusRoomId);
+          });
       });
     }).then(() => {
       info("Contact list synced");
@@ -386,7 +386,11 @@ class Base {
       if (typeof arg === 'object') {
         return acc+sep+inspect(arg, {depth:null,showHidden:true});
       } else {
-        return acc+sep+arg.toString();
+        var result = acc+sep;
+        if (arg) {
+          result += arg.toString();
+        }
+        return result;
       }
     }, '');
 
